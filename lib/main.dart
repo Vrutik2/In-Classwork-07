@@ -54,27 +54,33 @@ class _FadingTextAndRotatingImageAnimationState extends State<FadingTextAndRotat
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            AnimatedOpacity(
-              opacity: _isVisible ? 1.0 : 0.0,
-              duration: Duration(seconds: 1),
-              child: Text(
-                'Hello, Flutter!',
-                style: TextStyle(fontSize: 24),
+            GestureDetector(
+              onTap: toggleVisibility,
+              child: AnimatedOpacity(
+                opacity: _isVisible ? 1.0 : 0.0,
+                duration: Duration(seconds: 1),
+                child: Text(
+                  'Hello, Flutter!',
+                  style: TextStyle(fontSize: 24),
+                ),  
               ),
             ),
             SizedBox(height: 20),
-            AnimatedBuilder(
-              animation: _controller,
-              builder: (_, child) {
-                return Transform.rotate(
-                  angle: _controller.value * 2 * math.pi,
-                  child: child,
-                );
-              },
-              child: Image.asset(
-                'Soccerball.png',
-                width: 100,
-                height: 100,
+            GestureDetector(
+              onTap: toggleVisibility,
+              child: AnimatedBuilder(
+                animation: _controller,
+                builder: (_, child) {
+                  return Transform.rotate(
+                    angle: _controller.value * 2 * math.pi,
+                    child: child,
+                  );
+                },
+                child: Image.asset(
+                  'Soccerball.png',
+                  width: 100,
+                  height: 100,
+                ),
               ),
             ),
           ],
